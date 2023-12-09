@@ -6,10 +6,12 @@ import { useAppTheme } from '../../hooks/useAppTheme'
 
 interface TextInputProps extends RNTextInputProps {
     label: string,
-    errorMessage?: string
+    errorMessage?: string,
+    RightComponent?: React.ReactElement,
+    boxProps?: BoxProps
 }
 
-export const TextInput = ({label, errorMessage,...rnTextInputProps}: TextInputProps) => {
+export const TextInput = ({label, errorMessage, RightComponent, boxProps, ...rnTextInputProps}: TextInputProps) => {
 
     const {colors} = useAppTheme()
     const inputRef = useRef<RNTextInput>(null)
@@ -18,7 +20,8 @@ export const TextInput = ({label, errorMessage,...rnTextInputProps}: TextInputPr
         borderWidth: errorMessage ? 2 : 1,
         borderColor: errorMessage ? "error" : "gray4",
         padding: "s16",
-        borderRadius: "s12"
+        borderRadius: "s12",
+        flexDirection: "row"
     }
 
     function focusInput(){
@@ -26,8 +29,8 @@ export const TextInput = ({label, errorMessage,...rnTextInputProps}: TextInputPr
     }
 
     return (
-        <Pressable onPress={focusInput}>
-            <Box mb='s12'>
+        <Box {...boxProps}>
+            <Pressable onPress={focusInput}>
                 <Text preset="paragraphMedium" mb="s4">{label}</Text>
                 <Box {...$textInputContainer}>
                     <RNTextInput
@@ -36,15 +39,22 @@ export const TextInput = ({label, errorMessage,...rnTextInputProps}: TextInputPr
                         placeholderTextColor={colors.gray2}
                         {...rnTextInputProps}
                     />
+                    {RightComponent && (
+                        <Box ml="s16" justifyContent="center">
+                            {RightComponent}
+                        </Box>
+                    )}
                 </Box>
                 {errorMessage && <Text preset="paragraphSmall" color="error" bold>{errorMessage}</Text>}
-            </Box>
-        </Pressable>
+            </Pressable>
+        </Box>
     )
 }
 
 const $textInputStyle: TextStyle = {
     padding: 0,
     fontFamily: $fontFamily.regular,
-    ...$fontSizes.paragraphMedium,borderColor: "gray4",
+    flexGrow: 1,
+    flexShrink: 1,
+    ...$fontSizes.paragraphMedium,
 }
