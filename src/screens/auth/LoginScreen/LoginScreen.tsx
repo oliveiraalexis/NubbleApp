@@ -1,5 +1,4 @@
 import React from 'react'
-import { SafeAreaView, View } from 'react-native'
 import { Icon } from '../../../components/Icon/Icon'
 import { TextInput } from '../../../components/TextInput/TextInput'
 import { Text } from '../../../components/Text/Text'
