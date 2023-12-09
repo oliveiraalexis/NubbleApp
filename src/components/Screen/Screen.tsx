@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '../Box/Box'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useAppTheme } from '../../hooks/useAppTheme'
+import { useAppSafeArea } from '../../hooks/useAppSafeArea'
 
 interface screenProps {
     children: React.ReactNode
@@ -9,7 +9,7 @@ interface screenProps {
 
 export const Screen = ({children}: screenProps) => {
 
-    const {top} = useSafeAreaInsets()
+    const {top} = useAppSafeArea()
     const {spacing} = useAppTheme()
 
     return (
