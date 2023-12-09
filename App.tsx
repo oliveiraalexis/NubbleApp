@@ -21,8 +21,8 @@ function App(): JSX.Element {
           <Text preset="headingLarge" marginBottom="s8">Olá!</Text>
           <Text preset="paragraphLarge" marginBottom="s40">Digite seu e-mail e senha para entrar</Text>
 
-          <TextInput label='E-mail' placeholder='Digite seu e-mail' />
-          <TextInput label='Senha' placeholder='Digite sua senha'/>
+          <TextInput label='E-mail' placeholder='Digite seu e-mail'/>
+          <TextInput label='Senha' placeholder='Digite sua senha' errorMessage='Senha incorreta'/>
 
           <Text color="primary" preset="paragraphSmall" mt='s8' bold>Esqueci minha senha</Text>
           <Button title='Entrar' mt='s48'/>

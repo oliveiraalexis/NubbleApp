@@ -6,12 +6,20 @@ import { useAppTheme } from '../../hooks/useAppTheme'
 
 interface TextInputProps extends RNTextInputProps {
     label: string,
+    errorMessage?: string
 }
 
-export const TextInput = ({label,...rnTextInputProps}: TextInputProps) => {
+export const TextInput = ({label, errorMessage,...rnTextInputProps}: TextInputProps) => {
 
     const {colors} = useAppTheme()
     const inputRef = useRef<RNTextInput>(null)
+
+    const $textInputContainer: BoxProps = {
+        borderWidth: errorMessage ? 2 : 1,
+        borderColor: errorMessage ? "error" : "gray4",
+        padding: "s16",
+        borderRadius: "s12"
+    }
 
     function focusInput(){
         inputRef.current?.focus()
@@ -29,16 +37,10 @@ export const TextInput = ({label,...rnTextInputProps}: TextInputProps) => {
                         {...rnTextInputProps}
                     />
                 </Box>
+                {errorMessage && <Text preset="paragraphSmall" color="error" bold>{errorMessage}</Text>}
             </Box>
         </Pressable>
     )
-}
-
-const $textInputContainer: BoxProps = {
-    borderWidth:1,
-    padding: "s16",
-    borderColor: "gray4",
-    borderRadius: "s12"
 }
 
 const $textInputStyle: TextStyle = {
