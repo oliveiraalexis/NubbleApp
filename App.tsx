@@ -6,20 +6,18 @@
  */
 
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
-import {Text} from './src/components/Text/Text';
 import { ThemeProvider } from '@shopify/restyle';
 import { theme } from './src/theme/theme';
-import { Button } from './src/components/Button/Button';
-import { TextInput } from './src/components/TextInput/TextInput';
-import { Icon } from './src/components/Icon/Icon';
 import { LoginScreen } from './src/screens/auth/LoginScreen/LoginScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <LoginScreen/>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <LoginScreen/>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 

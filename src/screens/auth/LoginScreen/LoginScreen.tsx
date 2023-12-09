@@ -4,12 +4,12 @@ import { Icon } from '../../../components/Icon/Icon'
 import { TextInput } from '../../../components/TextInput/TextInput'
 import { Text } from '../../../components/Text/Text'
 import { Button } from '../../../components/Button/Button'
+import { Screen } from '../../../components/Screen/Screen'
 
 export const LoginScreen = () => {
 
     return (
-        <SafeAreaView>
-            <View style={{paddingHorizontal: 24}} >
+        <Screen>
             <Text preset="headingLarge" marginBottom="s8">Olá!</Text>
             <Text preset="paragraphLarge" marginBottom="s40">Digite seu e-mail e senha para entrar</Text>
 
@@ -30,7 +30,6 @@ export const LoginScreen = () => {
             <Text color="primary" preset="paragraphSmall" bold>Esqueci minha senha</Text>
             <Button title='Entrar' mt='s48'/>
             <Button preset='outline' title='Criar uma conta' mt='s12'/>
-            </View>
-        </SafeAreaView>
+        </Screen>
     )
 }
