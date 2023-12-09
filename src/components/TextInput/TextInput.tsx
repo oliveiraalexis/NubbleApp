@@ -1,29 +1,36 @@
-import React from 'react'
-import { TextInput as RNTextInput, TextInputProps as RNTextInputProps, StyleSheet, TextStyle } from 'react-native'
+import React, { useRef } from 'react'
+import { Pressable, TextInput as RNTextInput, TextInputProps as RNTextInputProps, StyleSheet, TextStyle } from 'react-native'
 import { Text, $fontFamily, $fontSizes } from '../Text/Text'
 import { Box, BoxProps } from '../Box/Box'
 import { useAppTheme } from '../../hooks/useAppTheme'
 
 interface TextInputProps extends RNTextInputProps {
-    label: string
-    placeholder?: string
+    label: string,
 }
 
-export const TextInput = ({label, placeholder,...rnTextInputProps}: TextInputProps) => {
+export const TextInput = ({label,...rnTextInputProps}: TextInputProps) => {
 
     const {colors} = useAppTheme()
+    const inputRef = useRef<RNTextInput>(null)
+
+    function focusInput(){
+        inputRef.current?.focus()
+    }
+
     return (
-        <Box mb='s12'>
-            <Text preset="paragraphMedium" mb="s4">{label}</Text>
-            <Box {...$textInputContainer}>
-                <RNTextInput 
-                    style={$textInputStyle}
-                    placeholder={placeholder}
-                    placeholderTextColor={colors.gray2}
-                    {...rnTextInputProps}
-                />
+        <Pressable onPress={focusInput}>
+            <Box mb='s12'>
+                <Text preset="paragraphMedium" mb="s4">{label}</Text>
+                <Box {...$textInputContainer}>
+                    <RNTextInput
+                        ref={inputRef}
+                        style={$textInputStyle}
+                        placeholderTextColor={colors.gray2}
+                        {...rnTextInputProps}
+                    />
+                </Box>
             </Box>
-        </Box>
+        </Pressable>
     )
 }
 
@@ -35,7 +42,6 @@ const $textInputContainer: BoxProps = {
 }
 
 const $textInputStyle: TextStyle = {
-    borderWidth:1,
     padding: 0,
     fontFamily: $fontFamily.regular,
     ...$fontSizes.paragraphMedium,borderColor: "gray4",
