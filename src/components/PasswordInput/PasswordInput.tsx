@@ -17,9 +17,11 @@ export const PasswordInput = (props: PasswordTypeProps) => {
         <TextInput
             secureTextEntry={isSecureTextEntry}
             RightComponent={
-                <Pressable onPress={toggleSecureTextEntry}>
-                    <Icon name='eyeOn' color='gray2'/>
-                </Pressable>
+                <Icon
+                    onPress={toggleSecureTextEntry}
+                    name={isSecureTextEntry ? 'eyeOn' : 'eyeOff'}
+                    color='gray2'
+                />
             }
             {...props}
         />
