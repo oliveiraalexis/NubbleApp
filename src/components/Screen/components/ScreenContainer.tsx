@@ -8,7 +8,7 @@ interface Props {
 
 export const ScrollViewContainer = ({children, backgroundColor}: Props) => {
 
-    return <ScrollView style={{backgroundColor, flex: 1}}>{children}</ScrollView>
+    return <ScrollView keyboardShouldPersistTaps='handled' style={{backgroundColor, flex: 1}}>{children}</ScrollView>
 }
 
 export const ViewContainer = ({children, backgroundColor}: Props) => {
