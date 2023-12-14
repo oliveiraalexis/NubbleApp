@@ -3,7 +3,7 @@ import { Pressable } from 'react-native'
 import { TextInput, TextInputProps } from '../TextInput/TextInput'
 import { Icon } from '../Icon/Icon'
 
-type PasswordTypeProps = TextInputProps
+type PasswordTypeProps = Omit<TextInputProps, 'RightComponent'>
 
 export const PasswordInput = (props: PasswordTypeProps) => {
 

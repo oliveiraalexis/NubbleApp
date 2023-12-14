@@ -1,16 +1,29 @@
 import React from 'react'
-import {  } from 'react-native'
 import { Screen } from '../../../components/Screen/Screen'
 import { Text } from '../../../components/Text/Text'
 import { TextInput } from '../../../components/TextInput/TextInput'
-import { Icon } from '../../../components/Icon/Icon'
 import { Button } from '../../../components/Button/Button'
 import { PasswordInput } from '../../../components/PasswordInput/PasswordInput'
+import { RootStackParamList } from '../../../routes/Routes'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess'
 
-export const SignUpScreen = () => {
+type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
+
+export const SignUpScreen = ({navigation}: ScreenProps) => {
+
+    const {reset} = useResetNavigationSuccess()
 
     function submitForm() {
-        //TO DO
+
+        reset({
+            title: 'Sua conta foi criada com sucesso!',
+            description: 'Agora é só fazer login na nossa plataforma',
+            icon: {
+                name: 'checkRound',
+                color: 'greenSuccess'
+            },
+        })
     }
 
     return (
